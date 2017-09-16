@@ -8,7 +8,7 @@ namespace USP.SUEP.ESI.Lib.Controller
 
         public bool Auth(User _parObjUser)
         {
-            return new LoginDAO().Auth(_parObjUser.Login, _parObjUser.Pass);
+            return new LoginDAO().Auth(_parObjUser.Login, _parObjUser.Pass) != null;
         }
 
     }
