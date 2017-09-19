@@ -104,7 +104,7 @@ namespace USP.ESI.SUEP.Desktop
                     new AgendaController().Edit(_objAgenda);
                 }
 
-                TxtIdConsulta.Text = string.Empty;
+                LimparTela();
                 LoadAgenda();
             }
             catch(Exception ex)
@@ -147,9 +147,14 @@ namespace USP.ESI.SUEP.Desktop
 
         private void BtnCancelar_Consulta_Click(object sender, EventArgs e)
         {
+            LimparTela();
+        }
+
+        private void LimparTela()
+        {
             TxtIdConsulta.Text =
-                TxtPacientsName.Text =
-                TxtSpentTime.Text = string.Empty;
+                            TxtPacientsName.Text =
+                            TxtSpentTime.Text = string.Empty;
         }
     }
 }

@@ -76,18 +76,28 @@ namespace USP.ESI.SUEP.Dao
             {
                 using(var _objContext = new EntidadesContext())
                 {
-                    var _objRetrieved = _objContext.Agendas.FirstOrDefault(agenda => agenda.Id == _parObjDatabaseAgenda.Id);
 
-                    if(_objRetrieved != null)
+                    var _intIntersectionCount = _objContext.Agendas.Where(agenda => (agenda.Dt_Begin <= _parObjDatabaseAgenda.Dt_End && _parObjDatabaseAgenda.Dt_Begin <= agenda.Dt_End) && agenda.Id_User_Doctor == _parObjDatabaseAgenda.Id_User_Doctor && agenda.Id != _parObjDatabaseAgenda.Id).ToList().Count;
+
+                    if (_intIntersectionCount <= 0)
                     {
-                        _objRetrieved.Id_User_Doctor = _parObjDatabaseAgenda.Id_User_Doctor;
-                        _objRetrieved.Id_User_Pacient = _parObjDatabaseAgenda.Id_User_Pacient;
-                        _objRetrieved.Dt_Begin = _parObjDatabaseAgenda.Dt_Begin;
-                        _objRetrieved.Dt_End = _parObjDatabaseAgenda.Dt_End;
+                        var _objRetrieved = _objContext.Agendas.FirstOrDefault(agenda => agenda.Id == _parObjDatabaseAgenda.Id);
 
-                        _objContext.SaveChanges();
+                        if (_objRetrieved != null)
+                        {
+                            _objRetrieved.Id_User_Doctor = _parObjDatabaseAgenda.Id_User_Doctor;
+                            _objRetrieved.Id_User_Pacient = _parObjDatabaseAgenda.Id_User_Pacient;
+                            _objRetrieved.Dt_Begin = _parObjDatabaseAgenda.Dt_Begin;
+                            _objRetrieved.Dt_End = _parObjDatabaseAgenda.Dt_End;
+
+                            _objContext.SaveChanges();
+                        }
+                        return true;
                     }
-                    return true;
+                    else
+                    {
+                        throw new Exception("Houve um conflito de horários. Por favor, reveja sua agenda.");
+                    }   
                 }
             }
             catch(Exception ex)
