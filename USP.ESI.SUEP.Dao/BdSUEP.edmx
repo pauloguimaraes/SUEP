@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SUEPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="TbSuep_Agenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Dt_Begin" Type="datetime" Nullable="false" />
+          <Property Name="Dt_End" Type="datetime" Nullable="false" />
+          <Property Name="Id_User_Doctor" Type="bigint" Nullable="false" />
+          <Property Name="Id_User_Pacient" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="TbSuep_User">
           <Key>
             <PropertyRef Name="Id" />
@@ -12,9 +22,69 @@
           <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Login" Type="varchar" MaxLength="12" Nullable="false" />
           <Property Name="Pass" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Id_User_Type" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CPF" Type="varchar" MaxLength="20" Nullable="false" />
         </EntityType>
+        <EntityType Name="TbSuep_User_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <Association Name="Fk_Doctor_Agenda">
+          <End Role="TbSuep_User" Type="Self.TbSuep_User" Multiplicity="1" />
+          <End Role="TbSuep_Agenda" Type="Self.TbSuep_Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_Agenda">
+              <PropertyRef Name="Id_User_Doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Pacient_Agenda">
+          <End Role="TbSuep_User" Type="Self.TbSuep_User" Multiplicity="1" />
+          <End Role="TbSuep_Agenda" Type="Self.TbSuep_Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_Agenda">
+              <PropertyRef Name="Id_User_Pacient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_User_User_Type">
+          <End Role="TbSuep_User_Type" Type="Self.TbSuep_User_Type" Multiplicity="1" />
+          <End Role="TbSuep_User" Type="Self.TbSuep_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_User">
+              <PropertyRef Name="Id_User_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SUEPModelStoreContainer">
+          <EntitySet Name="TbSuep_Agenda" EntityType="Self.TbSuep_Agenda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TbSuep_User" EntityType="Self.TbSuep_User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TbSuep_User_Type" EntityType="Self.TbSuep_User_Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="Fk_Doctor_Agenda" Association="Self.Fk_Doctor_Agenda">
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+            <End Role="TbSuep_Agenda" EntitySet="TbSuep_Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Pacient_Agenda" Association="Self.Fk_Pacient_Agenda">
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+            <End Role="TbSuep_Agenda" EntitySet="TbSuep_Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_User_User_Type" Association="Self.Fk_User_User_Type">
+            <End Role="TbSuep_User_Type" EntitySet="TbSuep_User_Type" />
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -22,6 +92,20 @@
       <Schema Namespace="SUEPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SUEPEntities" annotation:LazyLoadingEnabled="true" >
           <EntitySet Name="TbSuep_User" EntityType="SUEPModel.TbSuep_User" />
+          <EntitySet Name="TbSuep_User_Type" EntityType="SUEPModel.TbSuep_User_Type" />
+          <AssociationSet Name="Fk_User_User_Type" Association="SUEPModel.Fk_User_User_Type">
+            <End Role="TbSuep_User_Type" EntitySet="TbSuep_User_Type" />
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+          </AssociationSet>
+          <EntitySet Name="TbSuep_Agenda" EntityType="SUEPModel.TbSuep_Agenda" />
+          <AssociationSet Name="Fk_Doctor_Agenda" Association="SUEPModel.Fk_Doctor_Agenda">
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+            <End Role="TbSuep_Agenda" EntitySet="TbSuep_Agenda" />
+          </AssociationSet>
+          <AssociationSet Name="Fk_Pacient_Agenda" Association="SUEPModel.Fk_Pacient_Agenda">
+            <End Role="TbSuep_User" EntitySet="TbSuep_User" />
+            <End Role="TbSuep_Agenda" EntitySet="TbSuep_Agenda" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="TbSuep_User">
           <Key>
@@ -30,7 +114,69 @@
           <Property Name="Id" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Login" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="false" />
           <Property Name="Pass" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Id_User_Type" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="TbSuep_User_Type" Relationship="SUEPModel.Fk_User_User_Type" FromRole="TbSuep_User" ToRole="TbSuep_User_Type" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CPF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TbSuep_Agenda" Relationship="SUEPModel.Fk_Doctor_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
+          <NavigationProperty Name="TbSuep_Agenda1" Relationship="SUEPModel.Fk_Pacient_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
         </EntityType>
+        <EntityType Name="TbSuep_User_Type">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TbSuep_User" Relationship="SUEPModel.Fk_User_User_Type" FromRole="TbSuep_User_Type" ToRole="TbSuep_User" />
+        </EntityType>
+        <Association Name="Fk_User_User_Type">
+          <End Type="SUEPModel.TbSuep_User_Type" Role="TbSuep_User_Type" Multiplicity="1" />
+          <End Type="SUEPModel.TbSuep_User" Role="TbSuep_User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User_Type">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_User">
+              <PropertyRef Name="Id_User_Type" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="TbSuep_Agenda">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dt_Begin" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Dt_End" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Id_User_Doctor" Type="Int64" Nullable="false" />
+          <Property Name="Id_User_Pacient" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="TbSuep_User" Relationship="SUEPModel.Fk_Doctor_Agenda" FromRole="TbSuep_Agenda" ToRole="TbSuep_User" />
+          <NavigationProperty Name="TbSuep_User1" Relationship="SUEPModel.Fk_Pacient_Agenda" FromRole="TbSuep_Agenda" ToRole="TbSuep_User" />
+        </EntityType>
+        <Association Name="Fk_Doctor_Agenda">
+          <End Type="SUEPModel.TbSuep_User" Role="TbSuep_User" Multiplicity="1" />
+          <End Type="SUEPModel.TbSuep_Agenda" Role="TbSuep_Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_Agenda">
+              <PropertyRef Name="Id_User_Doctor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Fk_Pacient_Agenda">
+          <End Type="SUEPModel.TbSuep_User" Role="TbSuep_User" Multiplicity="1" />
+          <End Type="SUEPModel.TbSuep_Agenda" Role="TbSuep_Agenda" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TbSuep_User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TbSuep_Agenda">
+              <PropertyRef Name="Id_User_Pacient" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -40,8 +186,30 @@
           <EntitySetMapping Name="TbSuep_User">
             <EntityTypeMapping TypeName="SUEPModel.TbSuep_User">
               <MappingFragment StoreEntitySet="TbSuep_User">
+                <ScalarProperty Name="CPF" ColumnName="CPF" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id_User_Type" ColumnName="Id_User_Type" />
                 <ScalarProperty Name="Pass" ColumnName="Pass" />
                 <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TbSuep_User_Type">
+            <EntityTypeMapping TypeName="SUEPModel.TbSuep_User_Type">
+              <MappingFragment StoreEntitySet="TbSuep_User_Type">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TbSuep_Agenda">
+            <EntityTypeMapping TypeName="SUEPModel.TbSuep_Agenda">
+              <MappingFragment StoreEntitySet="TbSuep_Agenda">
+                <ScalarProperty Name="Id_User_Pacient" ColumnName="Id_User_Pacient" />
+                <ScalarProperty Name="Id_User_Doctor" ColumnName="Id_User_Doctor" />
+                <ScalarProperty Name="Dt_End" ColumnName="Dt_End" />
+                <ScalarProperty Name="Dt_Begin" ColumnName="Dt_Begin" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

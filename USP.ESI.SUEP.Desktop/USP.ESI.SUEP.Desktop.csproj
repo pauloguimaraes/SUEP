@@ -48,6 +48,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Binding\BindingAgenda.cs" />
+    <Compile Include="Binding\BindingUser.cs" />
+    <Compile Include="FrmAgenda.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAgenda.Designer.cs">
+      <DependentUpon>FrmAgenda.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLoggedAdminIndex.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLoggedAdminIndex.Designer.cs">
+      <DependentUpon>FrmLoggedAdminIndex.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -56,6 +70,13 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SessionInfos\LoggedUser.cs" />
+    <EmbeddedResource Include="FrmAgenda.resx">
+      <DependentUpon>FrmAgenda.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLoggedAdminIndex.resx">
+      <DependentUpon>FrmLoggedAdminIndex.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmLogin.resx">
       <DependentUpon>FrmLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -84,9 +105,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\USP.SUEP.ESI.Lib\USP.SUEP.ESI.Lib.csproj">
+    <ProjectReference Include="..\USP.SUEP.ESI.Lib\USP.ESI.SUEP.Lib.csproj">
       <Project>{2C8088B2-0CCC-4D33-9691-07EDAF963EEE}</Project>
-      <Name>USP.SUEP.ESI.Lib</Name>
+      <Name>USP.ESI.SUEP.Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

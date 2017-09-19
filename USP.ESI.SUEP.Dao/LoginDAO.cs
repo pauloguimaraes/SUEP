@@ -9,7 +9,7 @@ namespace USP.ESI.SUEP.Dao
         {
             using(var _objContext = new EntidadesContext())
             {
-                return _objContext.Users.FirstOrDefault(user => user.Login.Equals(_parStrLogin) && user.Pass.Equals(_parStrPass));
+                return _objContext.Users.Include(user => user.TbSuep_User_Type).FirstOrDefault(user => user.Login.Equals(_parStrLogin) && user.Pass.Equals(_parStrPass));
             }
         }
 

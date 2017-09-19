@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 
 namespace USP.ESI.SUEP.Dao
 {
@@ -14,5 +9,7 @@ namespace USP.ESI.SUEP.Dao
         }
 
         public virtual DbSet<TbSuep_User> Users { get; set; }
+        public virtual DbSet<TbSuep_User_Type> UserTypes { get; set; }
+        public virtual DbSet<TbSuep_Agenda> Agendas { get; set; }
     }
 }

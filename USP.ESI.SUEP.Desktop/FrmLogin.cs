@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Windows.Forms;
-using USP.SUEP.ESI.Lib.Controller;
-using USP.SUEP.ESI.Lib.Model;
+using USP.ESI.SUEP.Desktop.SessionInfos;
+using USP.ESI.SUEP.Lib.Controller;
+using USP.ESI.SUEP.Lib.Model;
+using USP.ESI.SUEP.Lib.Model.Constants;
 
 namespace USP.ESI.SUEP.Desktop
 {
@@ -21,9 +23,23 @@ namespace USP.ESI.SUEP.Desktop
                 if(_bolValid)
                 {
                     var _objUser = new User(TxtLogin.Text, TxtPass.Text);
-                    var _bolSuccessAuth = new LoginController().Auth(_objUser);
+                    var _objLoggedUser = new LoginController().Auth(_objUser);
 
-                    MessageBox.Show(_bolSuccessAuth.ToString());
+                    LoggedUser.USER = _objLoggedUser;
+
+                    Hide();
+                    var _strUserType = _objLoggedUser.AccessProfile.GetUserTypeAsString();
+                    switch(_strUserType)
+                    {
+                        case UserTypeConstants.ADMIN:
+                            new FrmLoggedAdminIndex().Show();
+                            break;
+                        case UserTypeConstants.DOCTO:
+                            new Consultas().Show();
+                            break;
+                        default:
+                            throw new Exception("Perfil de acesso não mapeado para acesso no sistema");
+                    }
                 }
             }
             catch(ArgumentException _excArgumentException)
@@ -32,7 +48,7 @@ namespace USP.ESI.SUEP.Desktop
             }
             catch(Exception ex)
             {
-                throw ex.InnerException ?? ex;
+                MessageBox.Show(ex.Message);
             }
         }
 

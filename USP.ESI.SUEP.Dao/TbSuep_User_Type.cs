@@ -12,26 +12,18 @@ namespace USP.ESI.SUEP.Dao
     using System;
     using System.Collections.Generic;
     
-    public partial class TbSuep_User
+    public partial class TbSuep_User_Type
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public TbSuep_User()
+        public TbSuep_User_Type()
         {
-            this.TbSuep_Agenda = new HashSet<TbSuep_Agenda>();
-            this.TbSuep_Agenda1 = new HashSet<TbSuep_Agenda>();
+            this.TbSuep_User = new HashSet<TbSuep_User>();
         }
     
-        public long Id { get; set; }
-        public string Login { get; set; }
-        public string Pass { get; set; }
-        public int Id_User_Type { get; set; }
-        public string Name { get; set; }
-        public string CPF { get; set; }
+        public int Id { get; set; }
+        public string UserType { get; set; }
     
-        public virtual TbSuep_User_Type TbSuep_User_Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TbSuep_Agenda> TbSuep_Agenda { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TbSuep_Agenda> TbSuep_Agenda1 { get; set; }
+        public virtual ICollection<TbSuep_User> TbSuep_User { get; set; }
     }
 }

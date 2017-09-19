@@ -26,5 +26,7 @@ namespace USP.ESI.SUEP.Dao
         }
     
         public virtual DbSet<TbSuep_User> TbSuep_User { get; set; }
+        public virtual DbSet<TbSuep_User_Type> TbSuep_User_Type { get; set; }
+        public virtual DbSet<TbSuep_Agenda> TbSuep_Agenda { get; set; }
     }
 }

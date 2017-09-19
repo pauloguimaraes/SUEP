@@ -7,8 +7,8 @@
     <ProjectGuid>{2C8088B2-0CCC-4D33-9691-07EDAF963EEE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>USP.SUEP.ESI.Lib</RootNamespace>
-    <AssemblyName>USP.SUEP.ESI.Lib</AssemblyName>
+    <RootNamespace>USP.ESI.SUEP.Lib</RootNamespace>
+    <AssemblyName>USP.ESI.SUEP.Lib</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -32,6 +32,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -40,8 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgendaController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\UserController.cs" />
+    <Compile Include="Controller\UserTypeController.cs" />
+    <Compile Include="Model\Admin.cs" />
+    <Compile Include="Model\Agenda.cs" />
+    <Compile Include="Model\Constants\UserTypeConstants.cs" />
+    <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Pacient.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Model\IUserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -50,5 +60,6 @@
       <Name>USP.ESI.SUEP.Dao</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
