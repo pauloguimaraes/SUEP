@@ -8,5 +8,10 @@ namespace USP.ESI.SUEP.Lib.Model
         {
             return UserTypeConstants.ADMIN;
         }
+
+        public int GetUserTypeId()
+        {
+            return 1;
+        }
     }
 }

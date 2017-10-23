@@ -1,5 +1,4 @@
-﻿using System.Windows.Forms;
-using USP.ESI.SUEP.Lib.Model.Constants;
+﻿using USP.ESI.SUEP.Lib.Model.Constants;
 
 namespace USP.ESI.SUEP.Lib.Model
 {
@@ -8,6 +7,11 @@ namespace USP.ESI.SUEP.Lib.Model
         public string GetUserTypeAsString()
         {
             return UserTypeConstants.DOCTO;
+        }
+
+        public int GetUserTypeId()
+        {
+            return 2;
         }
     }
 }

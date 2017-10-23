@@ -28,8 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Consultas));
             this.TbcAgenda = new System.Windows.Forms.TabControl();
             this.TbpAgenda = new System.Windows.Forms.TabPage();
+            this.BtnCancelar_Consulta = new System.Windows.Forms.Button();
+            this.TxtIdConsulta = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.BtnEditar_Consulta = new System.Windows.Forms.Button();
             this.BtnExcluir_Consulta = new System.Windows.Forms.Button();
             this.BtnAddConsult = new System.Windows.Forms.Button();
@@ -40,9 +44,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DtpBegin = new System.Windows.Forms.DateTimePicker();
             this.DtgAgenda = new System.Windows.Forms.DataGridView();
-            this.TxtIdConsulta = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.BtnCancelar_Consulta = new System.Windows.Forms.Button();
             this.TbcAgenda.SuspendLayout();
             this.TbpAgenda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgAgenda)).BeginInit();
@@ -79,6 +80,36 @@
             this.TbpAgenda.Size = new System.Drawing.Size(652, 411);
             this.TbpAgenda.TabIndex = 0;
             this.TbpAgenda.Text = "Consultas";
+            // 
+            // BtnCancelar_Consulta
+            // 
+            this.BtnCancelar_Consulta.Location = new System.Drawing.Point(66, 174);
+            this.BtnCancelar_Consulta.Name = "BtnCancelar_Consulta";
+            this.BtnCancelar_Consulta.Size = new System.Drawing.Size(88, 23);
+            this.BtnCancelar_Consulta.TabIndex = 13;
+            this.BtnCancelar_Consulta.Text = "Cancelar";
+            this.BtnCancelar_Consulta.UseVisualStyleBackColor = true;
+            this.BtnCancelar_Consulta.Click += new System.EventHandler(this.BtnCancelar_Consulta_Click);
+            // 
+            // TxtIdConsulta
+            // 
+            this.TxtIdConsulta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.TxtIdConsulta.Enabled = false;
+            this.TxtIdConsulta.Location = new System.Drawing.Point(151, 28);
+            this.TxtIdConsulta.Name = "TxtIdConsulta";
+            this.TxtIdConsulta.Size = new System.Drawing.Size(97, 20);
+            this.TxtIdConsulta.TabIndex = 12;
+            this.TxtIdConsulta.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(67, 31);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(78, 13);
+            this.label4.TabIndex = 11;
+            this.label4.Text = "Id da Consulta:";
+            this.label4.Visible = false;
             // 
             // BtnEditar_Consulta
             // 
@@ -172,34 +203,6 @@
             this.DtgAgenda.Size = new System.Drawing.Size(640, 150);
             this.DtgAgenda.TabIndex = 0;
             // 
-            // TxtIdConsulta
-            // 
-            this.TxtIdConsulta.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.TxtIdConsulta.Enabled = false;
-            this.TxtIdConsulta.Location = new System.Drawing.Point(151, 28);
-            this.TxtIdConsulta.Name = "TxtIdConsulta";
-            this.TxtIdConsulta.Size = new System.Drawing.Size(97, 20);
-            this.TxtIdConsulta.TabIndex = 12;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(67, 31);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 13);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "Id da Consulta:";
-            // 
-            // BtnCancelar_Consulta
-            // 
-            this.BtnCancelar_Consulta.Location = new System.Drawing.Point(66, 174);
-            this.BtnCancelar_Consulta.Name = "BtnCancelar_Consulta";
-            this.BtnCancelar_Consulta.Size = new System.Drawing.Size(88, 23);
-            this.BtnCancelar_Consulta.TabIndex = 13;
-            this.BtnCancelar_Consulta.Text = "Cancelar";
-            this.BtnCancelar_Consulta.UseVisualStyleBackColor = true;
-            this.BtnCancelar_Consulta.Click += new System.EventHandler(this.BtnCancelar_Consulta_Click);
-            // 
             // Consultas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -207,10 +210,11 @@
             this.ClientSize = new System.Drawing.Size(684, 461);
             this.Controls.Add(this.TbcAgenda);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Consultas";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FrmAgenda";
+            this.Text = "Consultas";
             this.Load += new System.EventHandler(this.FrmAgenda_Load);
             this.TbcAgenda.ResumeLayout(false);
             this.TbpAgenda.ResumeLayout(false);

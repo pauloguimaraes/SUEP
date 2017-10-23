@@ -25,6 +25,7 @@
           <Property Name="Id_User_Type" Type="int" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CPF" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FlActive" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TbSuep_User_Type">
           <Key>
@@ -120,6 +121,7 @@
           <Property Name="CPF" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="TbSuep_Agenda" Relationship="SUEPModel.Fk_Doctor_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
           <NavigationProperty Name="TbSuep_Agenda1" Relationship="SUEPModel.Fk_Pacient_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
+          <Property Name="FlActive" Type="Boolean" Nullable="false" />
         </EntityType>
         <EntityType Name="TbSuep_User_Type">
           <Key>
@@ -186,6 +188,7 @@
           <EntitySetMapping Name="TbSuep_User">
             <EntityTypeMapping TypeName="SUEPModel.TbSuep_User">
               <MappingFragment StoreEntitySet="TbSuep_User">
+                <ScalarProperty Name="FlActive" ColumnName="FlActive" />
                 <ScalarProperty Name="CPF" ColumnName="CPF" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id_User_Type" ColumnName="Id_User_Type" />

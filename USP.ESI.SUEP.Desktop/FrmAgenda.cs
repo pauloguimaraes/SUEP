@@ -148,6 +148,14 @@ namespace USP.ESI.SUEP.Desktop
         private void BtnCancelar_Consulta_Click(object sender, EventArgs e)
         {
             LimparTela();
+
+            _lstPacients = new UserController().GetAllPacientsName();
+            var _colPacients = new AutoCompleteStringCollection();
+            foreach (var _strPacientName in _lstPacients)
+                _colPacients.Add(_strPacientName);
+
+            TxtPacientsName.AutoCompleteSource = AutoCompleteSource.CustomSource;
+            TxtPacientsName.AutoCompleteCustomSource = _colPacients;
         }
 
         private void LimparTela()

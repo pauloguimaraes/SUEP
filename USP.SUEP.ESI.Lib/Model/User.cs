@@ -10,7 +10,9 @@ namespace USP.ESI.SUEP.Lib.Model
         public string Pass { get; set; }
         public string Name { get; set; }
         public string CPF { get; set; }
+        public bool Active { get; set; }
         public IUserType AccessProfile { get; set; }
+        public int IdAccessProfile { get; set; }
 
         public User()
         {

@@ -3,5 +3,6 @@
     public interface IUserType
     {
         string GetUserTypeAsString();
+        int GetUserTypeId();
     }
 }
