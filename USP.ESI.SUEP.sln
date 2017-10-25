@@ -1,13 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.12
+VisualStudioVersion = 15.0.27004.2005
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USP.ESI.SUEP.Desktop", "USP.ESI.SUEP.Desktop\USP.ESI.SUEP.Desktop.csproj", "{DC0E9ED7-C8F6-4DCE-8CB0-D84B69C92AE8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USP.ESI.SUEP.Lib", "USP.SUEP.ESI.Lib\USP.ESI.SUEP.Lib.csproj", "{2C8088B2-0CCC-4D33-9691-07EDAF963EEE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USP.ESI.SUEP.Dao", "USP.ESI.SUEP.Dao\USP.ESI.SUEP.Dao.csproj", "{EF85AC6B-EF35-4077-8337-1AB0AD69D5B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "USP.ESI.SUEP.Tests", "USP.ESI.SUEP.Tests\USP.ESI.SUEP.Tests.csproj", "{69B262D8-07E8-4F78-A43A-88FF5BDEE6A6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{EF85AC6B-EF35-4077-8337-1AB0AD69D5B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EF85AC6B-EF35-4077-8337-1AB0AD69D5B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EF85AC6B-EF35-4077-8337-1AB0AD69D5B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{69B262D8-07E8-4F78-A43A-88FF5BDEE6A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{69B262D8-07E8-4F78-A43A-88FF5BDEE6A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{69B262D8-07E8-4F78-A43A-88FF5BDEE6A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{69B262D8-07E8-4F78-A43A-88FF5BDEE6A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

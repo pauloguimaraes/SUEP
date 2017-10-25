@@ -41,7 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AgendaController.cs" />
+    <Compile Include="Controller\AgendaController.cs" />
     <Compile Include="Controller\LoginController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />

@@ -41,5 +41,18 @@ namespace USP.ESI.SUEP.Lib.Model
                     throw new ArgumentException("Perfil de acesso desconhecido");
             }
         }
+
+        public override bool Equals(object obj)
+        {
+            if (obj.GetType() != typeof(User))
+                return false;
+
+            return ((User)obj).Login == Login;
+        }
+
+        public override int GetHashCode()
+        {
+            return 2108858624 + Id.GetHashCode();
+        }
     }
 }

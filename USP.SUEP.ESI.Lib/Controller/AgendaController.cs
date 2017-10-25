@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Windows.Forms;
 using USP.ESI.SUEP.Dao;
 using USP.ESI.SUEP.Lib.Model;
 
@@ -10,13 +9,20 @@ namespace USP.ESI.SUEP.Lib
     {
         public List<Agenda> GetAgendaFrom(User _parObjLoggedUser)
         {
-            var _objLstDatabaseAgendas = new AgendaDAO().Get(_parObjLoggedUser.Id);
-            var _objLstAgendas = new List<Agenda>();
+            try
+            {
+                var _objLstDatabaseAgendas = new AgendaDAO().Get(_parObjLoggedUser.Id);
+                var _objLstAgendas = new List<Agenda>();
+                
+                foreach (var _objDatabaseAgenda in _objLstDatabaseAgendas)
+                    _objLstAgendas.Add(DaoToModel(_objDatabaseAgenda));
 
-            foreach (var _objDatabaseAgenda in _objLstDatabaseAgendas)
-                _objLstAgendas.Add(DaoToModel(_objDatabaseAgenda));
-
-            return _objLstAgendas;
+                return _objLstAgendas;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
         }
 
         private Agenda DaoToModel(TbSuep_Agenda _parObjDatabaseAgenda)
