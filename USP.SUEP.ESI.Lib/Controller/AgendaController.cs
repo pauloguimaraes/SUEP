@@ -11,7 +11,7 @@ namespace USP.ESI.SUEP.Lib
         {
             try
             {
-                var _objLstDatabaseAgendas = new AgendaDAO().Get(_parObjLoggedUser.Id);
+                var _objLstDatabaseAgendas = new AgendaDAO(new EntidadesContext()).Get(_parObjLoggedUser.Id);
                 var _objLstAgendas = new List<Agenda>();
                 
                 foreach (var _objDatabaseAgenda in _objLstDatabaseAgendas)
@@ -62,7 +62,7 @@ namespace USP.ESI.SUEP.Lib
                 var _objUserPacient = new UserDAO().GetIdFrom(_parObjAgenda.Pacient.Name);
                 _parObjAgenda.Pacient.Id = _objUserPacient.Id;
 
-                new AgendaDAO().Add(new TbSuep_Agenda()
+                new AgendaDAO(new EntidadesContext()).Add(new TbSuep_Agenda()
                 {
                     Dt_Begin = _parObjAgenda.DtBegin,
                     Dt_End = _parObjAgenda.DtEnd,
@@ -85,7 +85,7 @@ namespace USP.ESI.SUEP.Lib
                     Id = _parObjAgenda.Id
                 };
 
-                return new AgendaDAO().Remove(_objDatabaseAgenda);
+                return new AgendaDAO(new EntidadesContext()).Remove(_objDatabaseAgenda);
             }
             catch(Exception ex)
             {
@@ -109,7 +109,7 @@ namespace USP.ESI.SUEP.Lib
                     Id_User_Pacient = _parObjAgenda.Pacient.Id
                 };
 
-                return new AgendaDAO().Edit(_objDatabaseAgenda);
+                return new AgendaDAO(new EntidadesContext()).Edit(_objDatabaseAgenda);
             }
             catch(Exception ex)
             {

@@ -12,7 +12,7 @@ namespace USP.ESI.SUEP.Lib.Controller
             var _strEncodedPass = Convert.ToBase64String(Encoding.UTF8.GetBytes(_parObjUser.Pass));
             _parObjUser.Pass = _strEncodedPass;
 
-            var _objAuthUser = new LoginDAO().Auth(_parObjUser.Login, _parObjUser.Pass);
+            var _objAuthUser = new LoginDAO(new EntidadesContext()).Auth(_parObjUser.Login, _parObjUser.Pass);
 
             if (_objAuthUser != null)
                 return DaoToModel(_objAuthUser);

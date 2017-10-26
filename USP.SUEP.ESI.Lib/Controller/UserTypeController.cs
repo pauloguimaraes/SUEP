@@ -7,7 +7,7 @@ namespace USP.ESI.SUEP.Lib.Controller
     {
         public List<string> Get()
         {
-            return new UserTypeDAO().Get();
+            return new UserTypeDAO(new EntidadesContext()).Get();
         }
     }
 }
