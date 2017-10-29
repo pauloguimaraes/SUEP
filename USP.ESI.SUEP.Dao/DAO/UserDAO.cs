@@ -7,14 +7,23 @@ namespace USP.ESI.SUEP.Dao
 {
     public class UserDAO
     {
+        private EntidadesContext entidadesContext;
+
+        public UserDAO(EntidadesContext _par_objEntidadesContext)
+        {
+            entidadesContext = _par_objEntidadesContext;
+        }
+
         public List<TbSuep_User> Get()
         {
             try
             {
-                using (var _objContext = new EntidadesContext())
-                {
-                    return _objContext.Users.Include(user => user.TbSuep_User_Type).Take(50).OrderBy(user => user.Login).ToList();
-                }
+                var _objUsers = entidadesContext.Users.Include(user => user.TbSuep_User_Type);
+
+                if (_objUsers == null || _objUsers.Count() == 0)
+                    throw new Exception("Não existem usuários cadastrados!");
+
+                return _objUsers.Take(50).OrderBy(user => user.Login).ToList();
             }
             catch(Exception ex)
             {
@@ -26,10 +35,11 @@ namespace USP.ESI.SUEP.Dao
         {
             try
             {
-                using(var _objContext = new EntidadesContext())
-                {
-                    return _objContext.Users.Include(user => user.TbSuep_User_Type).Where(user => user.Id_User_Type == 3).OrderBy(user => user.Name).ToList();
-                }
+                return entidadesContext.Users
+                    .Include(user => user.TbSuep_User_Type)
+                    .Where(user => user.Id_User_Type == 3 && user.FlActive)
+                    .OrderBy(user => user.Name)
+                    .ToList();
             }
             catch(Exception ex)
             {
@@ -41,18 +51,17 @@ namespace USP.ESI.SUEP.Dao
         {
             try
             {
-                using(var _objContext = new EntidadesContext())
+                var _objRetrieve = entidadesContext.Users.FirstOrDefault(user => user.Id == _objDatabaseUser.Id);
+
+                if (_objRetrieve != null)
                 {
-                    var _objRetrieve = _objContext.Users.FirstOrDefault(user => user.Id == _objDatabaseUser.Id);
-
-                    if (_objRetrieve != null)
-                    {
-                        _objRetrieve.FlActive = false;
-                        _objContext.SaveChanges();
-                    }
-
-                    return true;
+                    _objRetrieve.FlActive = false;
+                    entidadesContext.SaveChanges();
                 }
+                else
+                    throw new Exception("Usuário inexistente");
+
+                return true;
             }
             catch(Exception ex)
             {
@@ -60,14 +69,16 @@ namespace USP.ESI.SUEP.Dao
             }
         }
 
-        public TbSuep_User GetIdFrom(string _parStrUserName)
+        public TbSuep_User GetUserWithTheName(string _parStrUserName)
         {
             try
             {
-                using(var _objContext = new EntidadesContext())
-                {
-                    return _objContext.Users.FirstOrDefault(user => user.Name.Equals(_parStrUserName));
-                }
+                var _objUser = entidadesContext.Users.FirstOrDefault(user => user.Name.Equals(_parStrUserName));
+
+                if (_objUser == null)
+                    throw new Exception("Usuário inexistente!");
+
+                return _objUser;
             }
             catch(Exception ex)
             {
@@ -77,9 +88,9 @@ namespace USP.ESI.SUEP.Dao
 
         public bool Update(TbSuep_User _parObjUserDatabase)
         {
-            using (var _objContext = new EntidadesContext())
+            try
             {
-                var _objRetrieve = _objContext.Users.FirstOrDefault(user => user.Id == _parObjUserDatabase.Id);
+                var _objRetrieve = entidadesContext.Users.FirstOrDefault(user => user.Id == _parObjUserDatabase.Id);
 
                 if (_objRetrieve != null)
                 {
@@ -90,10 +101,16 @@ namespace USP.ESI.SUEP.Dao
                     _objRetrieve.Name = _parObjUserDatabase.Name;
                     _objRetrieve.CPF = _parObjUserDatabase.CPF;
                     _objRetrieve.FlActive = _parObjUserDatabase.FlActive;
-                    _objContext.SaveChanges();
+                    entidadesContext.SaveChanges();
                 }
+                else
+                    throw new Exception("Usuário inexistente!");
 
                 return true;
+            }
+            catch(Exception ex)
+            {
+                throw ex;
             }
         }
 
@@ -101,12 +118,11 @@ namespace USP.ESI.SUEP.Dao
         {
             try
             {
-                using(var _objContext = new EntidadesContext())
-                {
-                    _objContext.Users.Add(_parObjUserDatabase);
-                    _objContext.SaveChanges();
-                }
+                if (_parObjUserDatabase.Id > 0)
+                    _parObjUserDatabase.Id = 0;
 
+                entidadesContext.Users.Add(_parObjUserDatabase);
+                entidadesContext.SaveChanges();
                 return true;
             }
             catch(Exception ex)

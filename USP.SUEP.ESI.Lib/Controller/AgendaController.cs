@@ -59,7 +59,7 @@ namespace USP.ESI.SUEP.Lib
         {
             try
             {
-                var _objUserPacient = new UserDAO().GetIdFrom(_parObjAgenda.Pacient.Name);
+                var _objUserPacient = new UserDAO(new EntidadesContext()).GetUserWithTheName(_parObjAgenda.Pacient.Name);
                 _parObjAgenda.Pacient.Id = _objUserPacient.Id;
 
                 new AgendaDAO(new EntidadesContext()).Add(new TbSuep_Agenda()
@@ -97,7 +97,7 @@ namespace USP.ESI.SUEP.Lib
         {
             try
             {
-                var _objUserPacient = new UserDAO().GetIdFrom(_parObjAgenda.Pacient.Name);
+                var _objUserPacient = new UserDAO(new EntidadesContext()).GetUserWithTheName(_parObjAgenda.Pacient.Name);
                 _parObjAgenda.Pacient.Id = _objUserPacient.Id;
 
                 var _objDatabaseAgenda = new TbSuep_Agenda()

@@ -9,7 +9,7 @@ namespace USP.ESI.SUEP.Lib.Controller
     {
         public List<User> Get()
         {
-            var _objLstDatabaseUsers = new UserDAO().Get();
+            var _objLstDatabaseUsers = new UserDAO(new EntidadesContext()).Get();
             var _objLstUsers = new List<User>();
 
             foreach (var _objDatabaseUser in _objLstDatabaseUsers)
@@ -20,7 +20,7 @@ namespace USP.ESI.SUEP.Lib.Controller
 
         public List<string> GetAllPacientsName()
         {
-            var _objLstDatabaseUsers = new UserDAO().GetAllPacients();
+            var _objLstDatabaseUsers = new UserDAO(new EntidadesContext()).GetAllPacients();
             var _objLstUsers = new List<string>();
 
             foreach (var _objDatabaseUser in _objLstDatabaseUsers)
@@ -33,7 +33,7 @@ namespace USP.ESI.SUEP.Lib.Controller
         {
             try
             {
-                return new UserDAO().Delete(ModelToDao(user));
+                return new UserDAO(new EntidadesContext()).Delete(ModelToDao(user));
             }
             catch (Exception ex)
             {
@@ -90,9 +90,9 @@ namespace USP.ESI.SUEP.Lib.Controller
                 var _objDao = ModelToDao(_parObjUserModel);
 
                 if (_parObjUserModel.Id > 0)
-                    return new UserDAO().Update(_objDao);
+                    return new UserDAO(new EntidadesContext()).Update(_objDao);
 
-                return new UserDAO().Add(_objDao);
+                return new UserDAO(new EntidadesContext()).Add(_objDao);
             }
             catch(Exception ex)
             {

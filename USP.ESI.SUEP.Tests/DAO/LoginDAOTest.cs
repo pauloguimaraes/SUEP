@@ -4,15 +4,29 @@ using System.Collections.Generic;
 using System.Linq;
 using USP.ESI.SUEP.Dao;
 using System;
-using System.Data.Entity;
+using USP.ESI.SUEP.Tests.Util;
 
 namespace USP.ESI.SUEP.Tests.DAO
 {
+    /// <summary>
+    /// Classe de testes para interações com a camada de DAO do login
+    /// </summary>
+    /// 
+    /// <author>
+    /// Carlos F Traldi, 9390322
+    /// Paulo H F Guimaraes, 9390361
+    /// Pedro A Minutentag, 7994580
+    /// </author>
     [TestClass]
     public class LoginDAOTest
     {
         private Mock<EntidadesContext> mock;
 
+        #region [Init]
+
+        /// <summary>
+        /// Inicialização dos casos de teste
+        /// </summary>
         [TestInitialize]
         public void Setup()
         {
@@ -34,26 +48,19 @@ namespace USP.ESI.SUEP.Tests.DAO
                 }
             }.AsQueryable();
             
-            var _objMockSet = GetMockUserSet(_dataUser);
+            var _objMockSet = MockUtil<TbSuep_User>.GetMockSet(_dataUser);
             _objMockSet.Setup(m => m.Include(It.IsAny<string>())).Returns(_objMockSet.Object);
             
             mock.Setup(c => c.Users).Returns(_objMockSet.Object);
         }
+        
+        #endregion
 
-        private Mock<DbSet<TbSuep_User>> GetMockUserSet(IQueryable<TbSuep_User> data)
-        {
-            var _objMockSet = new Mock<DbSet<TbSuep_User>>();
-            _objMockSet.As<IQueryable<TbSuep_User>>()
-                .Setup(m => m.Provider).Returns(data.Provider);
-            _objMockSet.As<IQueryable<TbSuep_User>>()
-                .Setup(m => m.Expression).Returns(data.Expression);
-            _objMockSet.As<IQueryable<TbSuep_User>>()
-                .Setup(m => m.ElementType).Returns(data.ElementType);
-            _objMockSet.As<IQueryable<TbSuep_User>>()
-                .Setup(m => m.GetEnumerator()).Returns(data.GetEnumerator());
-            return _objMockSet;
-        }
+        #region [Tests]
 
+        /// <summary>
+        /// Caso de teste para o login bem sucedido
+        /// </summary>
         [TestMethod]
         public void ShouldBeAbleToAuthenticate()
         {
@@ -64,6 +71,10 @@ namespace USP.ESI.SUEP.Tests.DAO
             Assert.AreEqual(_objDao.Auth(_strUser, _strPass).Id, 1);
         }
 
+
+        /// <summary>
+        /// Caso de teste para quando o login falha
+        /// </summary>
         [TestMethod]
         public void ShouldThrowExceptionIfAuthenticationFails()
         {
@@ -77,6 +88,10 @@ namespace USP.ESI.SUEP.Tests.DAO
             });
         }
 
+
+        /// <summary>
+        /// Caso de teste para quando o usuário não existe
+        /// </summary>
         [TestMethod]
         public void ShouldThrowExceptionIfUserDoesNotExists()
         {
@@ -89,5 +104,8 @@ namespace USP.ESI.SUEP.Tests.DAO
                 _objDao.Auth(_strUser, _strPass);
             });
         }
+
+        #endregion
+
     }
 }
