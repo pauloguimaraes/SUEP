@@ -103,6 +103,7 @@
             this.TxtHourPrice.Size = new System.Drawing.Size(98, 20);
             this.TxtHourPrice.TabIndex = 21;
             this.TxtHourPrice.Visible = false;
+            this.TxtHourPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtHourPrice_KeyPress);
             // 
             // LblHourPrice
             // 
@@ -119,7 +120,7 @@
             this.ChbActive.AutoSize = true;
             this.ChbActive.Checked = true;
             this.ChbActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChbActive.Location = new System.Drawing.Point(6, 189);
+            this.ChbActive.Location = new System.Drawing.Point(596, 132);
             this.ChbActive.Name = "ChbActive";
             this.ChbActive.Size = new System.Drawing.Size(50, 17);
             this.ChbActive.TabIndex = 19;

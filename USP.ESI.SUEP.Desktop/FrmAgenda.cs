@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using USP.ESI.SUEP.Desktop.Binding;
 using USP.ESI.SUEP.Desktop.SessionInfos;
@@ -81,6 +82,8 @@ namespace USP.ESI.SUEP.Desktop
         {
             try
             {
+                var _bolValid = ValidaCampos();
+
                 TxtPreco.Text = TxtPreco.Text.Replace('.', ',');
 
                 if(TxtIdConsulta.Text.Equals(string.Empty))
@@ -124,6 +127,25 @@ namespace USP.ESI.SUEP.Desktop
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private bool ValidaCampos()
+        {
+            var _strMensagem = string.Empty;
+
+            if (TxtPacientsName.Text.Length < 3)
+                _strMensagem += "Paciente com nome inválido\n";
+
+            if (TxtSpentTime.Text.Trim().Equals(string.Empty))
+                _strMensagem += "Duração inválida\n";
+
+            if (TxtPreco.Text.Trim().Equals(string.Empty) || TxtPreco.Text.Count(s => s == '.') > 1)
+                _strMensagem += "Preço inválido\n";
+
+            if (_strMensagem.Equals(string.Empty))
+                return true;
+            else
+                throw new ArgumentException(_strMensagem);
         }
 
         private void BtnExcluir_Consulta_Click(object sender, EventArgs e)
@@ -219,6 +241,24 @@ namespace USP.ESI.SUEP.Desktop
             }
             catch
             {
+            }
+        }
+
+        private void TxtPreco_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
+            {
+                e.Handled = true;
+                return;
+            }
+        }
+
+        private void TxtSpentTime_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if ((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8)
+            {
+                e.Handled = true;
+                return;
             }
         }
     }

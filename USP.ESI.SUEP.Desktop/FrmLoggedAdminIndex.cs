@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using USP.ESI.SUEP.Desktop.Binding;
@@ -138,6 +139,8 @@ namespace USP.ESI.SUEP.Desktop
             {
                 var _bolValid = ValidaCampos();
 
+                TxtHourPrice.Text = TxtHourPrice.Text.Replace('.', ',');
+
                 if (_bolValid)
                 {
                     var _objUser = new Lib.Model.User
@@ -187,7 +190,10 @@ namespace USP.ESI.SUEP.Desktop
 
             if (CbbUserType.SelectedIndex < 0)
                 _strMensagem += "Tipo de usuário inválido\n";
-            
+
+            if (CbbUserType.SelectedIndex == 1 && (TxtHourPrice.Text.Trim().Equals(string.Empty) || TxtHourPrice.Text.Count(s => s == '.') > 1))
+                _strMensagem += "Custo da hora inválido\n";
+
             if (_strMensagem.Equals(string.Empty))
                 return true;
             else
@@ -206,6 +212,15 @@ namespace USP.ESI.SUEP.Desktop
         {
             LblHourPrice.Visible =
                 TxtHourPrice.Visible = CbbUserType.SelectedIndex == 1;
+        }
+
+        private void TxtHourPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (((e.KeyChar < 48 || e.KeyChar > 57) && e.KeyChar != 8 && e.KeyChar != 46))
+            {
+                e.Handled = true;
+                return;
+            }
         }
     }
 }

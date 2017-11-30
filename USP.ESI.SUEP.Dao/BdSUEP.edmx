@@ -14,7 +14,7 @@
           <Property Name="Dt_End" Type="datetime" Nullable="false" />
           <Property Name="Id_User_Doctor" Type="bigint" Nullable="false" />
           <Property Name="Id_User_Pacient" Type="bigint" Nullable="false" />
-          <Property Name="Price" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="Price" Type="money" />
           <Property Name="Fl_Payed" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="TbSuep_Note">
@@ -36,7 +36,7 @@
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CPF" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="FlActive" Type="bit" Nullable="false" />
-          <Property Name="HourPrice" Type="decimal" Precision="3" Scale="0" />
+          <Property Name="HourPrice" Type="money" />
         </EntityType>
         <EntityType Name="TbSuep_User_Type">
           <Key>
@@ -155,7 +155,7 @@
           <NavigationProperty Name="TbSuep_Agenda" Relationship="SUEPModel.Fk_Doctor_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
           <NavigationProperty Name="TbSuep_Agenda1" Relationship="SUEPModel.Fk_Pacient_Agenda" FromRole="TbSuep_User" ToRole="TbSuep_Agenda" />
           <Property Name="FlActive" Type="Boolean" Nullable="false" />
-          <Property Name="HourPrice" Type="Decimal" Precision="3" Scale="0" />
+          <Property Name="HourPrice" Type="Decimal" Precision="19" Scale="4" />
         </EntityType>
         <EntityType Name="TbSuep_User_Type">
           <Key>
@@ -188,7 +188,7 @@
           <Property Name="Id_User_Pacient" Type="Int64" Nullable="false" />
           <NavigationProperty Name="TbSuep_User" Relationship="SUEPModel.Fk_Doctor_Agenda" FromRole="TbSuep_Agenda" ToRole="TbSuep_User" />
           <NavigationProperty Name="TbSuep_User1" Relationship="SUEPModel.Fk_Pacient_Agenda" FromRole="TbSuep_Agenda" ToRole="TbSuep_User" />
-          <Property Name="Price" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="Price" Type="Decimal" Precision="19" Scale="4" />
           <Property Name="Fl_Payed" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="TbSuep_Note" Relationship="SUEPModel.FK__TbSuep_No__Id_Ag__4BAC3F29" FromRole="TbSuep_Agenda" ToRole="TbSuep_Note" />
         </EntityType>

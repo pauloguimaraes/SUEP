@@ -31,6 +31,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAgenda));
             this.TbcAgenda = new System.Windows.Forms.TabControl();
             this.TbpAgenda = new System.Windows.Forms.TabPage();
+            this.ChbPaga = new System.Windows.Forms.CheckBox();
+            this.TxtPreco = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.BtnIniciarConsulta = new System.Windows.Forms.Button();
             this.BtnCancelar_Consulta = new System.Windows.Forms.Button();
             this.TxtIdConsulta = new System.Windows.Forms.TextBox();
@@ -46,9 +49,6 @@
             this.DtpBegin = new System.Windows.Forms.DateTimePicker();
             this.DtgAgenda = new System.Windows.Forms.DataGridView();
             this.LblExit = new System.Windows.Forms.Label();
-            this.TxtPreco = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.ChbPaga = new System.Windows.Forms.CheckBox();
             this.TbcAgenda.SuspendLayout();
             this.TbpAgenda.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgAgenda)).BeginInit();
@@ -89,6 +89,34 @@
             this.TbpAgenda.Size = new System.Drawing.Size(652, 411);
             this.TbpAgenda.TabIndex = 0;
             this.TbpAgenda.Text = "Consultas";
+            // 
+            // ChbPaga
+            // 
+            this.ChbPaga.AutoSize = true;
+            this.ChbPaga.Location = new System.Drawing.Point(70, 112);
+            this.ChbPaga.Name = "ChbPaga";
+            this.ChbPaga.Size = new System.Drawing.Size(51, 17);
+            this.ChbPaga.TabIndex = 17;
+            this.ChbPaga.Text = "Paga";
+            this.ChbPaga.UseVisualStyleBackColor = true;
+            // 
+            // TxtPreco
+            // 
+            this.TxtPreco.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.TxtPreco.Location = new System.Drawing.Point(474, 75);
+            this.TxtPreco.Name = "TxtPreco";
+            this.TxtPreco.Size = new System.Drawing.Size(88, 20);
+            this.TxtPreco.TabIndex = 16;
+            this.TxtPreco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPreco_KeyPress);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(471, 59);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Preço:";
             // 
             // BtnIniciarConsulta
             // 
@@ -167,6 +195,7 @@
             this.TxtSpentTime.Name = "TxtSpentTime";
             this.TxtSpentTime.Size = new System.Drawing.Size(88, 20);
             this.TxtSpentTime.TabIndex = 7;
+            this.TxtSpentTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtSpentTime_KeyPress);
             // 
             // TxtPacientsName
             // 
@@ -233,33 +262,6 @@
             this.LblExit.TabIndex = 2;
             this.LblExit.Text = "Sair";
             this.LblExit.Click += new System.EventHandler(this.LblExit_Click);
-            // 
-            // TxtPreco
-            // 
-            this.TxtPreco.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.TxtPreco.Location = new System.Drawing.Point(474, 75);
-            this.TxtPreco.Name = "TxtPreco";
-            this.TxtPreco.Size = new System.Drawing.Size(88, 20);
-            this.TxtPreco.TabIndex = 16;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(471, 59);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(38, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Preço:";
-            // 
-            // ChbPaga
-            // 
-            this.ChbPaga.AutoSize = true;
-            this.ChbPaga.Location = new System.Drawing.Point(70, 112);
-            this.ChbPaga.Name = "ChbPaga";
-            this.ChbPaga.Size = new System.Drawing.Size(51, 17);
-            this.ChbPaga.TabIndex = 17;
-            this.ChbPaga.Text = "Paga";
-            this.ChbPaga.UseVisualStyleBackColor = true;
             // 
             // FrmAgenda
             // 
