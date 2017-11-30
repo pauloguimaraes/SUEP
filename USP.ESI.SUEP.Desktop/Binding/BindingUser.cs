@@ -11,5 +11,6 @@
         public int IdUserType { get; set; }
         public bool IsActive { get; set; }
         public string Ativo { get; set; }
+        public string HourPrice { get; set; }
     }
 }

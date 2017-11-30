@@ -54,7 +54,8 @@ namespace USP.ESI.SUEP.Desktop
                         Tipo_Usuario = _objUser.AccessProfile.GetUserTypeAsString(),
                         IdUserType = _objUser.AccessProfile.GetUserTypeId(),
                         IsActive = _objUser.Active,
-                        Ativo = _objUser.Active ? "SIM" : "NÃO"
+                        Ativo = _objUser.Active ? "SIM" : "NÃO",
+                        HourPrice = (_objUser.HourPrice == null) ? string.Empty : _objUser.HourPrice.ToString(),
                     });
                 }
 
@@ -109,6 +110,10 @@ namespace USP.ESI.SUEP.Desktop
             ChbActive.Checked = Convert.ToBoolean(DtgUsers.CurrentRow.Cells["IsActive"].Value.ToString());
 
             TxtIdUsuario.Text = DtgUsers.CurrentRow.Cells["Id"].Value.ToString();
+            
+            LblHourPrice.Visible =
+                TxtHourPrice.Visible = CbbUserType.SelectedIndex == 1;
+            TxtHourPrice.Text = DtgUsers.CurrentRow.Cells["Senha"].Value.ToString().Equals(string.Empty) ? "" : DtgUsers.CurrentRow.Cells["HourPrice"].Value.ToString();
         }
 
         private void BtnCancelar_Consulta_Click(object sender, EventArgs e)
@@ -119,10 +124,11 @@ namespace USP.ESI.SUEP.Desktop
         private void CleanScreen()
         {
             TxtIdUsuario.Text =
-                            TxtName.Text =
-                            TxtCPF.Text =
-                            TxtLogin.Text =
-                            TxtPass.Text = string.Empty;
+                TxtName.Text =
+                TxtCPF.Text =
+                TxtLogin.Text =
+                TxtPass.Text = 
+                TxtHourPrice.Text = string.Empty;
             CbbUserType.SelectedIndex = -1;
         }
 
@@ -199,7 +205,7 @@ namespace USP.ESI.SUEP.Desktop
         private void CbbUserType_SelectedIndexChanged(object sender, EventArgs e)
         {
             LblHourPrice.Visible =
-                TxtHourPrice.Visible = CbbUserType.SelectedText.ToUpper().Equals("MEDICO");
+                TxtHourPrice.Visible = CbbUserType.SelectedIndex == 1;
         }
     }
 }

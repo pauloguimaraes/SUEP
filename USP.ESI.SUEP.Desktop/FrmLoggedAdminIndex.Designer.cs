@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmLoggedAdminIndex));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.TbpUser = new System.Windows.Forms.TabPage();
+            this.TxtHourPrice = new System.Windows.Forms.TextBox();
+            this.LblHourPrice = new System.Windows.Forms.Label();
             this.ChbActive = new System.Windows.Forms.CheckBox();
             this.BtnEditar_Consulta = new System.Windows.Forms.Button();
             this.BtnExcluir_Consulta = new System.Windows.Forms.Button();
@@ -50,8 +52,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DtgUsers = new System.Windows.Forms.DataGridView();
             this.LblExit = new System.Windows.Forms.Label();
-            this.TxtHourPrice = new System.Windows.Forms.TextBox();
-            this.LblHourPrice = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TbpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).BeginInit();
@@ -95,6 +95,24 @@
             this.TbpUser.Size = new System.Drawing.Size(652, 411);
             this.TbpUser.TabIndex = 0;
             this.TbpUser.Text = "Manter Usuário";
+            // 
+            // TxtHourPrice
+            // 
+            this.TxtHourPrice.Location = new System.Drawing.Point(396, 128);
+            this.TxtHourPrice.Name = "TxtHourPrice";
+            this.TxtHourPrice.Size = new System.Drawing.Size(98, 20);
+            this.TxtHourPrice.TabIndex = 21;
+            this.TxtHourPrice.Visible = false;
+            // 
+            // LblHourPrice
+            // 
+            this.LblHourPrice.AutoSize = true;
+            this.LblHourPrice.Location = new System.Drawing.Point(393, 112);
+            this.LblHourPrice.Name = "LblHourPrice";
+            this.LblHourPrice.Size = new System.Drawing.Size(101, 13);
+            this.LblHourPrice.TabIndex = 20;
+            this.LblHourPrice.Text = "Custo da Hora (R$):";
+            this.LblHourPrice.Visible = false;
             // 
             // ChbActive
             // 
@@ -271,25 +289,6 @@
             this.LblExit.TabIndex = 1;
             this.LblExit.Text = "Sair";
             this.LblExit.Click += new System.EventHandler(this.LblExit_Click);
-            // 
-            // TxtHourPrice
-            // 
-            this.TxtHourPrice.Location = new System.Drawing.Point(396, 128);
-            this.TxtHourPrice.Name = "TxtHourPrice";
-            this.TxtHourPrice.Size = new System.Drawing.Size(98, 20);
-            this.TxtHourPrice.TabIndex = 21;
-            this.TxtHourPrice.UseSystemPasswordChar = true;
-            this.TxtHourPrice.Visible = false;
-            // 
-            // LblHourPrice
-            // 
-            this.LblHourPrice.AutoSize = true;
-            this.LblHourPrice.Location = new System.Drawing.Point(393, 112);
-            this.LblHourPrice.Name = "LblHourPrice";
-            this.LblHourPrice.Size = new System.Drawing.Size(101, 13);
-            this.LblHourPrice.TabIndex = 20;
-            this.LblHourPrice.Text = "Custo da Hora (R$):";
-            this.LblHourPrice.Visible = false;
             // 
             // FrmLoggedAdminIndex
             // 

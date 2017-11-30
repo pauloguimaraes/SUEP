@@ -72,9 +72,8 @@ namespace USP.ESI.SUEP.Desktop
                 DtgAgenda.Columns[4].HeaderText = "PREÇO";
                 DtgAgenda.Columns[5].HeaderText = "PAGA";
             }
-            catch(Exception ex)
+            catch
             {
-                throw ex.InnerException ?? ex;
             }
         }
 
@@ -202,19 +201,25 @@ namespace USP.ESI.SUEP.Desktop
 
         private void BtnIniciarConsulta_Click(object sender, EventArgs e)
         {
-            var _objCurrentRowAgenda = new Agenda()
+            try
             {
-                Id = Convert.ToInt32(DtgAgenda.CurrentRow.Cells[0].Value),
-                Pacient = new User()
+                var _objCurrentRowAgenda = new Agenda()
                 {
-                    Name = DtgAgenda.CurrentRow.Cells[3].Value.ToString()
-                },
-                DtBegin = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value),
-            };
+                    Id = Convert.ToInt32(DtgAgenda.CurrentRow.Cells[0].Value),
+                    Pacient = new User()
+                    {
+                        Name = DtgAgenda.CurrentRow.Cells[3].Value.ToString()
+                    },
+                    DtBegin = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value),
+                };
 
-            Hide();
-            FrmNote _objFrmNote = new FrmNote(_objCurrentRowAgenda);
-            _objFrmNote.Show();
+                Hide();
+                FrmNote _objFrmNote = new FrmNote(_objCurrentRowAgenda);
+                _objFrmNote.Show();
+            }
+            catch
+            {
+            }
         }
     }
 }

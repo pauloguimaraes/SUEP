@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmNote));
             this.TxtNote = new System.Windows.Forms.TextBox();
             this.BtnSalvar = new System.Windows.Forms.Button();
             this.LblConsulta = new System.Windows.Forms.Label();
@@ -79,7 +80,12 @@
             this.Controls.Add(this.LblConsulta);
             this.Controls.Add(this.BtnSalvar);
             this.Controls.Add(this.TxtNote);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmNote";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anotações";
             this.ResumeLayout(false);
             this.PerformLayout();

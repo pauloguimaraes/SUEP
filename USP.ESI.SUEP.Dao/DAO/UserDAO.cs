@@ -99,6 +99,7 @@ namespace USP.ESI.SUEP.Dao
                     _objRetrieve.Login = _parObjUserDatabase.Login;
                     _objRetrieve.Id_User_Type = _parObjUserDatabase.Id_User_Type;
                     _objRetrieve.Name = _parObjUserDatabase.Name;
+                    _objRetrieve.HourPrice = _parObjUserDatabase.HourPrice;
                     _objRetrieve.CPF = _parObjUserDatabase.CPF;
                     _objRetrieve.FlActive = _parObjUserDatabase.FlActive;
                     entidadesContext.SaveChanges();

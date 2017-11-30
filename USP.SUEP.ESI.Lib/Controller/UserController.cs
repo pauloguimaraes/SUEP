@@ -75,7 +75,8 @@ namespace USP.ESI.SUEP.Lib.Controller
                     Id = _parObjDatabaseUser.Id,
                     Name = _parObjDatabaseUser.Name,
                     CPF = _parObjDatabaseUser.CPF,
-                    Active = _parObjDatabaseUser.FlActive
+                    Active = _parObjDatabaseUser.FlActive,
+                    HourPrice = _parObjDatabaseUser.HourPrice
                 };
             }
             catch(Exception ex)
