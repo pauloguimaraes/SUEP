@@ -14,13 +14,23 @@ namespace USP.ESI.SUEP.Dao
     
     public partial class TbSuep_Agenda
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public TbSuep_Agenda()
+        {
+            this.TbSuep_Note = new HashSet<TbSuep_Note>();
+        }
+    
         public int Id { get; set; }
         public System.DateTime Dt_Begin { get; set; }
         public System.DateTime Dt_End { get; set; }
         public long Id_User_Doctor { get; set; }
         public long Id_User_Pacient { get; set; }
+        public Nullable<decimal> Price { get; set; }
+        public bool Fl_Payed { get; set; }
     
         public virtual TbSuep_User TbSuep_User { get; set; }
         public virtual TbSuep_User TbSuep_User1 { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TbSuep_Note> TbSuep_Note { get; set; }
     }
 }

@@ -65,10 +65,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BdSUEP.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAO\NoteDAO.cs" />
     <Compile Include="EntidadesContext.cs" />
     <Compile Include="DAO\LoginDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TbSuep_Agenda.cs">
+      <DependentUpon>BdSUEP.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TbSuep_Note.cs">
       <DependentUpon>BdSUEP.tt</DependentUpon>
     </Compile>
     <Compile Include="TbSuep_User.cs">

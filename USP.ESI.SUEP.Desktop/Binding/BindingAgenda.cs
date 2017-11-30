@@ -6,5 +6,7 @@
         public string DtBegin { get; set; }
         public string DtEnd { get; set; }
         public string PacientName { get; set; }
+        public string Price { get; set; }
+        public string Payed { get; set; }
     }
 }

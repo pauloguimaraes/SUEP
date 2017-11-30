@@ -49,6 +49,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.DtgUsers = new System.Windows.Forms.DataGridView();
+            this.LblExit = new System.Windows.Forms.Label();
+            this.TxtHourPrice = new System.Windows.Forms.TextBox();
+            this.LblHourPrice = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TbpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).BeginInit();
@@ -57,7 +60,7 @@
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.TbpUser);
-            this.tabControl1.Location = new System.Drawing.Point(12, 12);
+            this.tabControl1.Location = new System.Drawing.Point(12, 62);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(660, 437);
@@ -66,6 +69,8 @@
             // TbpUser
             // 
             this.TbpUser.BackColor = System.Drawing.SystemColors.Control;
+            this.TbpUser.Controls.Add(this.TxtHourPrice);
+            this.TbpUser.Controls.Add(this.LblHourPrice);
             this.TbpUser.Controls.Add(this.ChbActive);
             this.TbpUser.Controls.Add(this.BtnEditar_Consulta);
             this.TbpUser.Controls.Add(this.BtnExcluir_Consulta);
@@ -96,7 +101,7 @@
             this.ChbActive.AutoSize = true;
             this.ChbActive.Checked = true;
             this.ChbActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChbActive.Location = new System.Drawing.Point(9, 132);
+            this.ChbActive.Location = new System.Drawing.Point(6, 189);
             this.ChbActive.Name = "ChbActive";
             this.ChbActive.Size = new System.Drawing.Size(50, 17);
             this.ChbActive.TabIndex = 19;
@@ -125,7 +130,7 @@
             // 
             // BtnCancelar_Consulta
             // 
-            this.BtnCancelar_Consulta.Location = new System.Drawing.Point(464, 155);
+            this.BtnCancelar_Consulta.Location = new System.Drawing.Point(464, 183);
             this.BtnCancelar_Consulta.Name = "BtnCancelar_Consulta";
             this.BtnCancelar_Consulta.Size = new System.Drawing.Size(88, 23);
             this.BtnCancelar_Consulta.TabIndex = 16;
@@ -135,7 +140,7 @@
             // 
             // BtnSave
             // 
-            this.BtnSave.Location = new System.Drawing.Point(558, 155);
+            this.BtnSave.Location = new System.Drawing.Point(558, 183);
             this.BtnSave.Name = "BtnSave";
             this.BtnSave.Size = new System.Drawing.Size(88, 23);
             this.BtnSave.TabIndex = 15;
@@ -165,15 +170,16 @@
             // 
             // CbbUserType
             // 
-            this.CbbUserType.Location = new System.Drawing.Point(396, 128);
+            this.CbbUserType.Location = new System.Drawing.Point(6, 128);
             this.CbbUserType.Name = "CbbUserType";
             this.CbbUserType.Size = new System.Drawing.Size(250, 21);
             this.CbbUserType.TabIndex = 10;
+            this.CbbUserType.SelectedIndexChanged += new System.EventHandler(this.CbbUserType_SelectedIndexChanged);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(393, 111);
+            this.label5.Location = new System.Drawing.Point(3, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(85, 13);
             this.label5.TabIndex = 9;
@@ -254,11 +260,43 @@
             this.DtgUsers.Size = new System.Drawing.Size(640, 150);
             this.DtgUsers.TabIndex = 0;
             // 
+            // LblExit
+            // 
+            this.LblExit.AutoSize = true;
+            this.LblExit.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.LblExit.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LblExit.Location = new System.Drawing.Point(636, 9);
+            this.LblExit.Name = "LblExit";
+            this.LblExit.Size = new System.Drawing.Size(32, 16);
+            this.LblExit.TabIndex = 1;
+            this.LblExit.Text = "Sair";
+            this.LblExit.Click += new System.EventHandler(this.LblExit_Click);
+            // 
+            // TxtHourPrice
+            // 
+            this.TxtHourPrice.Location = new System.Drawing.Point(396, 128);
+            this.TxtHourPrice.Name = "TxtHourPrice";
+            this.TxtHourPrice.Size = new System.Drawing.Size(98, 20);
+            this.TxtHourPrice.TabIndex = 21;
+            this.TxtHourPrice.UseSystemPasswordChar = true;
+            this.TxtHourPrice.Visible = false;
+            // 
+            // LblHourPrice
+            // 
+            this.LblHourPrice.AutoSize = true;
+            this.LblHourPrice.Location = new System.Drawing.Point(393, 112);
+            this.LblHourPrice.Name = "LblHourPrice";
+            this.LblHourPrice.Size = new System.Drawing.Size(101, 13);
+            this.LblHourPrice.TabIndex = 20;
+            this.LblHourPrice.Text = "Custo da Hora (R$):";
+            this.LblHourPrice.Visible = false;
+            // 
             // FrmLoggedAdminIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(684, 461);
+            this.ClientSize = new System.Drawing.Size(684, 511);
+            this.Controls.Add(this.LblExit);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -272,6 +310,7 @@
             this.TbpUser.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -297,5 +336,8 @@
         private System.Windows.Forms.Button BtnEditar_Consulta;
         private System.Windows.Forms.Button BtnExcluir_Consulta;
         private System.Windows.Forms.CheckBox ChbActive;
+        private System.Windows.Forms.Label LblExit;
+        private System.Windows.Forms.TextBox TxtHourPrice;
+        private System.Windows.Forms.Label LblHourPrice;
     }
 }

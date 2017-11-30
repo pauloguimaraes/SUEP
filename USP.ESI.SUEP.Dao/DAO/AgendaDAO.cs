@@ -101,6 +101,8 @@ namespace USP.ESI.SUEP.Dao
                         _objRetrieved.Id_User_Pacient = _parObjDatabaseAgenda.Id_User_Pacient;
                         _objRetrieved.Dt_Begin = _parObjDatabaseAgenda.Dt_Begin;
                         _objRetrieved.Dt_End = _parObjDatabaseAgenda.Dt_End;
+                        _objRetrieved.Fl_Payed = _parObjDatabaseAgenda.Fl_Payed;
+                        _objRetrieved.Price = _parObjDatabaseAgenda.Price;
 
                         _objContext.SaveChanges();
                     }

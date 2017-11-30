@@ -9,5 +9,7 @@ namespace USP.ESI.SUEP.Lib.Model
         public DateTime DtEnd { get; set; }
         public User Doctor { get; set; }
         public User Pacient { get; set; }
+        public decimal? Price { get; set; }
+        public bool Payed { get; set; }
     }
 }

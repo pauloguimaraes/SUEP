@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Forms;
 using USP.ESI.SUEP.Desktop.Binding;
+using USP.ESI.SUEP.Desktop.SessionInfos;
 using USP.ESI.SUEP.Lib.Controller;
 
 namespace USP.ESI.SUEP.Desktop
@@ -140,7 +141,8 @@ namespace USP.ESI.SUEP.Desktop
                         Login = TxtLogin.Text,
                         Pass = Convert.ToBase64String(Encoding.UTF8.GetBytes(TxtPass.Text)),
                         Active = ChbActive.Checked,
-                        IdAccessProfile = CbbUserType.SelectedIndex + 1
+                        IdAccessProfile = CbbUserType.SelectedIndex + 1,
+                        HourPrice = Convert.ToDecimal(TxtHourPrice.Text)
                     };
 
                     if (!TxtIdUsuario.Text.Equals(string.Empty))
@@ -184,6 +186,20 @@ namespace USP.ESI.SUEP.Desktop
                 return true;
             else
                 throw new ArgumentException(_strMensagem);
+        }
+
+        private void LblExit_Click(object sender, EventArgs e)
+        {
+            LoggedUser.USER = null;
+
+            Hide();
+            new FrmLogin().Show();
+        }
+
+        private void CbbUserType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LblHourPrice.Visible =
+                TxtHourPrice.Visible = CbbUserType.SelectedText.ToUpper().Equals("MEDICO");
         }
     }
 }

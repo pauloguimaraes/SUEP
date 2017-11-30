@@ -43,12 +43,14 @@
   <ItemGroup>
     <Compile Include="Controller\AgendaController.cs" />
     <Compile Include="Controller\LoginController.cs" />
+    <Compile Include="Controller\NoteController.cs" />
     <Compile Include="Controller\UserController.cs" />
     <Compile Include="Controller\UserTypeController.cs" />
     <Compile Include="Model\Admin.cs" />
     <Compile Include="Model\Agenda.cs" />
     <Compile Include="Model\Constants\UserTypeConstants.cs" />
     <Compile Include="Model\Doctor.cs" />
+    <Compile Include="Model\Note.cs" />
     <Compile Include="Model\Pacient.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Model\IUserType.cs" />

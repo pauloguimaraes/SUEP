@@ -13,6 +13,7 @@ namespace USP.ESI.SUEP.Lib.Model
         public bool Active { get; set; }
         public IUserType AccessProfile { get; set; }
         public int IdAccessProfile { get; set; }
+        public decimal? HourPrice { get; set; }
 
         public User()
         {

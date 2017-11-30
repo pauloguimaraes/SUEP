@@ -33,7 +33,9 @@ namespace USP.ESI.SUEP.Lib
                 {
                     Id = _parObjDatabaseAgenda.Id,
                     DtBegin = _parObjDatabaseAgenda.Dt_Begin,
-                    DtEnd = _parObjDatabaseAgenda.Dt_End
+                    DtEnd = _parObjDatabaseAgenda.Dt_End,
+                    Price = _parObjDatabaseAgenda.Price,
+                    Payed = _parObjDatabaseAgenda.Fl_Payed,
                 };
 
                 _objAgenda.Doctor = new User()
@@ -66,6 +68,8 @@ namespace USP.ESI.SUEP.Lib
                 {
                     Dt_Begin = _parObjAgenda.DtBegin,
                     Dt_End = _parObjAgenda.DtEnd,
+                    Price = _parObjAgenda.Price,
+                    Fl_Payed = _parObjAgenda.Payed,
                     Id_User_Doctor = _parObjAgenda.Doctor.Id,
                     Id_User_Pacient = _parObjAgenda.Pacient.Id
                 });
@@ -105,6 +109,8 @@ namespace USP.ESI.SUEP.Lib
                     Id = _parObjAgenda.Id,
                     Dt_Begin = _parObjAgenda.DtBegin,
                     Dt_End = _parObjAgenda.DtEnd,
+                    Price = _parObjAgenda.Price,
+                    Fl_Payed = _parObjAgenda.Payed,
                     Id_User_Doctor = _parObjAgenda.Doctor.Id,
                     Id_User_Pacient = _parObjAgenda.Pacient.Id
                 };

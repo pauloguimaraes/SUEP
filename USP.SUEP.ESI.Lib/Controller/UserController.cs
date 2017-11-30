@@ -53,7 +53,8 @@ namespace USP.ESI.SUEP.Lib.Controller
                     Id_User_Type = _parObjUserModel.IdAccessProfile,
                     FlActive = _parObjUserModel.Active,
                     Pass = _parObjUserModel.Pass,
-                    Login = _parObjUserModel.Login
+                    Login = _parObjUserModel.Login,
+                    HourPrice = _parObjUserModel.HourPrice
                 };
             }
             catch(Exception ex)

@@ -35,7 +35,7 @@ namespace USP.ESI.SUEP.Desktop
                             new FrmLoggedAdminIndex().Show();
                             break;
                         case UserTypeConstants.DOCTO:
-                            new Consultas().Show();
+                            new FrmAgenda().Show();
                             break;
                         default:
                             throw new Exception("Perfil de acesso não mapeado para acesso no sistema");

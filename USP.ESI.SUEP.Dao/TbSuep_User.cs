@@ -28,6 +28,7 @@ namespace USP.ESI.SUEP.Dao
         public string Name { get; set; }
         public string CPF { get; set; }
         public bool FlActive { get; set; }
+        public Nullable<decimal> HourPrice { get; set; }
     
         public virtual TbSuep_User_Type TbSuep_User_Type { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

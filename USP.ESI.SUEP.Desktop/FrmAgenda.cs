@@ -10,11 +10,11 @@ using USP.ESI.SUEP.Lib.Model;
 
 namespace USP.ESI.SUEP.Desktop
 {
-    public partial class Consultas : Form
+    public partial class FrmAgenda : Form
     {
         private List<string> _lstPacients;
 
-        public Consultas()
+        public FrmAgenda()
         {
             InitializeComponent();
         }
@@ -55,7 +55,9 @@ namespace USP.ESI.SUEP.Desktop
                         Id = _objAgenda.Id,
                         DtBegin = _objAgenda.DtBegin.ToString("dd/MM/yyyy HH:mm"),
                         DtEnd = _objAgenda.DtEnd.ToString("dd/MM/yyyy HH:mm"),
-                        PacientName = _objAgenda.Pacient.Name
+                        PacientName = _objAgenda.Pacient.Name,
+                        Price = (_objAgenda.Price != null) ? _objAgenda.Price.ToString() : string.Empty,
+                        Payed = _objAgenda.Payed ? "SIM" : "NÃO"
                     });
                 }
 
@@ -63,9 +65,12 @@ namespace USP.ESI.SUEP.Desktop
                 DtgAgenda.DataSource = _objBinding;
 
                 DtgAgenda.Columns[0].HeaderText = "IDENTIFICAÇÃO";
+                DtgAgenda.Columns[0].Visible = false;
                 DtgAgenda.Columns[1].HeaderText = "INÍCIO DA CONSULTA";
                 DtgAgenda.Columns[2].HeaderText = "FINAL DA CONSULTA";
                 DtgAgenda.Columns[3].HeaderText = "PACIENTE";
+                DtgAgenda.Columns[4].HeaderText = "PREÇO";
+                DtgAgenda.Columns[5].HeaderText = "PAGA";
             }
             catch(Exception ex)
             {
@@ -77,30 +82,39 @@ namespace USP.ESI.SUEP.Desktop
         {
             try
             {
+                TxtPreco.Text = TxtPreco.Text.Replace('.', ',');
+
                 if(TxtIdConsulta.Text.Equals(string.Empty))
                 {
-                    var _objAgenda = new Agenda();
-                    _objAgenda.Pacient = new User();
-                    _objAgenda.Doctor = new User();
+                    var _objAgenda = new Agenda
+                    {
+                        Pacient = new User(),
+                        Doctor = new User(),
+                        DtBegin = DtpBegin.Value,
+                        Price = Convert.ToDecimal(TxtPreco.Text),
+                        Payed = ChbPaga.Checked,
+                        DtEnd = DtpBegin.Value.AddMinutes(Convert.ToInt32(TxtSpentTime.Text))
+                    };
                     _objAgenda.Pacient.Name = TxtPacientsName.Text.ToUpper();
-                    _objAgenda.DtBegin = DtpBegin.Value;
-                    _objAgenda.DtEnd = DtpBegin.Value.AddMinutes(Convert.ToInt32(TxtSpentTime.Text));
                     _objAgenda.Doctor.Id = LoggedUser.USER.Id;
 
                     new AgendaController().Add(_objAgenda);
                 }
                 else
                 {
-                    var _objAgenda = new Agenda();
-                    _objAgenda.Id = Convert.ToInt32(TxtIdConsulta.Text);
-                    _objAgenda.Pacient = new User();
-                    _objAgenda.Doctor = new User();
+                    var _objAgenda = new Agenda
+                    {
+                        Id = Convert.ToInt32(TxtIdConsulta.Text),
+                        Pacient = new User(),
+                        Doctor = new User(),
+                        DtBegin = DtpBegin.Value,
+                        Payed = ChbPaga.Checked,
+                        Price = Convert.ToDecimal(TxtPreco.Text),
+                        DtEnd = DtpBegin.Value.AddMinutes(Convert.ToInt32(TxtSpentTime.Text))
+                    };
                     _objAgenda.Pacient.Name = TxtPacientsName.Text.ToUpper();
-                    _objAgenda.DtBegin = DtpBegin.Value;
-                    _objAgenda.DtEnd = DtpBegin.Value.AddMinutes(Convert.ToInt32(TxtSpentTime.Text));
                     _objAgenda.Doctor.Id = LoggedUser.USER.Id;
-
-
+                    
                     new AgendaController().Edit(_objAgenda);
                 }
 
@@ -127,22 +141,33 @@ namespace USP.ESI.SUEP.Desktop
 
         private void BtnEditar_Consulta_Click(object sender, EventArgs e)
         {
-            var _objCurrentRowAgenda = new Agenda()
+            try
             {
-                Id = Convert.ToInt32(DtgAgenda.CurrentRow.Cells[0].Value),
-                Pacient = new User()
+                var _objCurrentRowAgenda = new Agenda()
                 {
-                    Name = DtgAgenda.CurrentRow.Cells[3].Value.ToString()
-                },
-                DtBegin = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value),
-            };
+                    Id = Convert.ToInt32(DtgAgenda.CurrentRow.Cells[0].Value),
+                    Pacient = new User()
+                    {
+                        Name = DtgAgenda.CurrentRow.Cells[3].Value.ToString()
+                    },
+                    DtBegin = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value),
+                    Price = Convert.ToDecimal(DtgAgenda.CurrentRow.Cells[4].Value.ToString().Equals(string.Empty) ? 0 : DtgAgenda.CurrentRow.Cells[4].Value),
+                    Payed = DtgAgenda.CurrentRow.Cells[5].Value.ToString().ToUpper().Equals("SIM")
+                };
 
-            var _objTimeSpan = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value).Subtract(Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[2].Value));
+                var _objTimeSpan = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value).Subtract(Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[2].Value));
 
-            TxtIdConsulta.Text = _objCurrentRowAgenda.Id.ToString();
-            TxtPacientsName.Text = _objCurrentRowAgenda.Pacient.Name;
-            TxtSpentTime.Text = _objTimeSpan.Hours < 0 ? Math.Abs(_objTimeSpan.Hours * 60).ToString() : Math.Abs(_objTimeSpan.Minutes).ToString();
-            DtpBegin.Value = _objCurrentRowAgenda.DtBegin;
+                TxtIdConsulta.Text = _objCurrentRowAgenda.Id.ToString();
+                TxtPacientsName.Text = _objCurrentRowAgenda.Pacient.Name;
+                TxtSpentTime.Text = _objTimeSpan.Hours < 0 ? Math.Abs(_objTimeSpan.Hours * 60).ToString() : Math.Abs(_objTimeSpan.Minutes).ToString();
+                DtpBegin.Value = _objCurrentRowAgenda.DtBegin;
+                TxtPreco.Text = _objCurrentRowAgenda.Price.ToString();
+                ChbPaga.Checked = _objCurrentRowAgenda.Payed;
+            }
+            catch
+            {
+
+            }
         }
 
         private void BtnCancelar_Consulta_Click(object sender, EventArgs e)
@@ -161,8 +186,35 @@ namespace USP.ESI.SUEP.Desktop
         private void LimparTela()
         {
             TxtIdConsulta.Text =
-                            TxtPacientsName.Text =
-                            TxtSpentTime.Text = string.Empty;
+                TxtPacientsName.Text =
+                TxtPreco.Text =
+                TxtSpentTime.Text = string.Empty;
+            ChbPaga.Checked = false;
+        }
+
+        private void LblExit_Click(object sender, EventArgs e)
+        {
+            LoggedUser.USER = null;
+
+            Hide();
+            new FrmLogin().Show();
+        }
+
+        private void BtnIniciarConsulta_Click(object sender, EventArgs e)
+        {
+            var _objCurrentRowAgenda = new Agenda()
+            {
+                Id = Convert.ToInt32(DtgAgenda.CurrentRow.Cells[0].Value),
+                Pacient = new User()
+                {
+                    Name = DtgAgenda.CurrentRow.Cells[3].Value.ToString()
+                },
+                DtBegin = Convert.ToDateTime(DtgAgenda.CurrentRow.Cells[1].Value),
+            };
+
+            Hide();
+            FrmNote _objFrmNote = new FrmNote(_objCurrentRowAgenda);
+            _objFrmNote.Show();
         }
     }
 }

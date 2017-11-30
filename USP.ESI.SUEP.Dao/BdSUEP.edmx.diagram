@@ -11,6 +11,8 @@
         <EntityTypeShape EntityType="SUEPModel.TbSuep_Agenda" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="SUEPModel.Fk_Doctor_Agenda" />
         <AssociationConnector Association="SUEPModel.Fk_Pacient_Agenda" />
+        <EntityTypeShape EntityType="SUEPModel.TbSuep_Note" Width="1.5" PointX="5.25" PointY="1.625" />
+        <AssociationConnector Association="SUEPModel.FK__TbSuep_No__Id_Ag__4BAC3F29" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
