@@ -26,18 +26,20 @@ namespace USP.ESI.SUEP.Desktop
                     var _objLoggedUser = new LoginController().Auth(_objUser);
 
                     LoggedUser.USER = _objLoggedUser;
-
-                    Hide();
+                    
                     var _strUserType = _objLoggedUser.AccessProfile.GetUserTypeAsString();
                     switch(_strUserType)
                     {
                         case UserTypeConstants.ADMIN:
+                            Hide();
                             new FrmLoggedAdminIndex().Show();
                             break;
                         case UserTypeConstants.DOCTO:
+                            Hide();
                             new FrmAgenda().Show();
                             break;
                         default:
+                            TxtLogin.Text = TxtPass.Text = string.Empty;
                             throw new Exception("Perfil de acesso não mapeado para acesso no sistema");
                     }
                 }

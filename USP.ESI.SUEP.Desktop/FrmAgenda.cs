@@ -33,6 +33,8 @@ namespace USP.ESI.SUEP.Desktop
             foreach (var _strPacientName in _lstPacients)
                 _colPacients.Add(_strPacientName);
 
+            LblOla.Text += " " + LoggedUser.USER.Name.Split(' ')[0] + "!";
+
             TxtPacientsName.AutoCompleteSource = AutoCompleteSource.CustomSource;
             TxtPacientsName.AutoCompleteCustomSource = _colPacients;
             
@@ -133,8 +135,8 @@ namespace USP.ESI.SUEP.Desktop
         {
             var _strMensagem = string.Empty;
 
-            if (TxtPacientsName.Text.Length < 3)
-                _strMensagem += "Paciente com nome inválido\n";
+            if (TxtPacientsName.Text.Trim().Length < 3)
+                _strMensagem += "Paciente com nome inválido (mais que 3 caracteres)\n";
 
             if (TxtSpentTime.Text.Trim().Equals(string.Empty))
                 _strMensagem += "Duração inválida\n";
@@ -207,9 +209,8 @@ namespace USP.ESI.SUEP.Desktop
         private void LimparTela()
         {
             TxtIdConsulta.Text =
-                TxtPacientsName.Text =
-                TxtPreco.Text =
-                TxtSpentTime.Text = string.Empty;
+                TxtPacientsName.Text = string.Empty;
+            TxtPreco.Text = TxtSpentTime.Text = "0";
             ChbPaga.Checked = false;
         }
 
@@ -259,6 +260,14 @@ namespace USP.ESI.SUEP.Desktop
             {
                 e.Handled = true;
                 return;
+            }
+        }
+
+        private void TxtSpentTime_TextChanged(object sender, EventArgs e)
+        {
+            if(TxtIdConsulta.Text.Equals(string.Empty))
+            {
+                TxtPreco.Text = (LoggedUser.USER.HourPrice * Convert.ToDecimal(TxtSpentTime.Text) / 60).ToString();
             }
         }
     }

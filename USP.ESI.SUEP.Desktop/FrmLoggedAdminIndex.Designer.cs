@@ -52,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.DtgUsers = new System.Windows.Forms.DataGridView();
             this.LblExit = new System.Windows.Forms.Label();
+            this.LblOla = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.TbpUser.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DtgUsers)).BeginInit();
@@ -98,7 +99,7 @@
             // 
             // TxtHourPrice
             // 
-            this.TxtHourPrice.Location = new System.Drawing.Point(396, 128);
+            this.TxtHourPrice.Location = new System.Drawing.Point(548, 127);
             this.TxtHourPrice.Name = "TxtHourPrice";
             this.TxtHourPrice.Size = new System.Drawing.Size(98, 20);
             this.TxtHourPrice.TabIndex = 21;
@@ -108,7 +109,7 @@
             // LblHourPrice
             // 
             this.LblHourPrice.AutoSize = true;
-            this.LblHourPrice.Location = new System.Drawing.Point(393, 112);
+            this.LblHourPrice.Location = new System.Drawing.Point(545, 111);
             this.LblHourPrice.Name = "LblHourPrice";
             this.LblHourPrice.Size = new System.Drawing.Size(101, 13);
             this.LblHourPrice.TabIndex = 20;
@@ -120,7 +121,7 @@
             this.ChbActive.AutoSize = true;
             this.ChbActive.Checked = true;
             this.ChbActive.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ChbActive.Location = new System.Drawing.Point(596, 132);
+            this.ChbActive.Location = new System.Drawing.Point(396, 129);
             this.ChbActive.Name = "ChbActive";
             this.ChbActive.Size = new System.Drawing.Size(50, 17);
             this.ChbActive.TabIndex = 19;
@@ -200,9 +201,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(3, 111);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.Size = new System.Drawing.Size(92, 13);
             this.label5.TabIndex = 9;
-            this.label5.Text = "Tipo de Usuário:";
+            this.label5.Text = "Tipo de Usuário *:";
             // 
             // TxtPass
             // 
@@ -224,18 +225,18 @@
             this.label4.AutoSize = true;
             this.label4.Location = new System.Drawing.Point(393, 72);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(41, 13);
+            this.label4.Size = new System.Drawing.Size(48, 13);
             this.label4.TabIndex = 6;
-            this.label4.Text = "Senha:";
+            this.label4.Text = "Senha *:";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(393, 33);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 13);
+            this.label3.Size = new System.Drawing.Size(43, 13);
             this.label3.TabIndex = 5;
-            this.label3.Text = "Login:";
+            this.label3.Text = "Login *:";
             // 
             // TxtCPF
             // 
@@ -256,18 +257,18 @@
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(3, 72);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.Size = new System.Drawing.Size(37, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "CPF:";
+            this.label2.Text = "CPF *:";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(3, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(38, 13);
+            this.label1.Size = new System.Drawing.Size(45, 13);
             this.label1.TabIndex = 1;
-            this.label1.Text = "Nome:";
+            this.label1.Text = "Nome *:";
             // 
             // DtgUsers
             // 
@@ -275,6 +276,7 @@
             this.DtgUsers.Location = new System.Drawing.Point(6, 226);
             this.DtgUsers.MultiSelect = false;
             this.DtgUsers.Name = "DtgUsers";
+            this.DtgUsers.ReadOnly = true;
             this.DtgUsers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DtgUsers.Size = new System.Drawing.Size(640, 150);
             this.DtgUsers.TabIndex = 0;
@@ -291,11 +293,21 @@
             this.LblExit.Text = "Sair";
             this.LblExit.Click += new System.EventHandler(this.LblExit_Click);
             // 
+            // LblOla
+            // 
+            this.LblOla.AutoSize = true;
+            this.LblOla.Location = new System.Drawing.Point(9, 12);
+            this.LblOla.Name = "LblOla";
+            this.LblOla.Size = new System.Drawing.Size(26, 13);
+            this.LblOla.TabIndex = 2;
+            this.LblOla.Text = "Olá,";
+            // 
             // FrmLoggedAdminIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(684, 511);
+            this.Controls.Add(this.LblOla);
             this.Controls.Add(this.LblExit);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -339,5 +351,6 @@
         private System.Windows.Forms.Label LblExit;
         private System.Windows.Forms.TextBox TxtHourPrice;
         private System.Windows.Forms.Label LblHourPrice;
+        private System.Windows.Forms.Label LblOla;
     }
 }

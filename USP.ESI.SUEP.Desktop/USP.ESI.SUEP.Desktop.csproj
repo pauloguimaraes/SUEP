@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>brain.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework.SqlServer">
       <HintPath>..\USP.ESI.SUEP.Dao\bin\Debug\EntityFramework.SqlServer.dll</HintPath>
@@ -119,6 +122,9 @@
       <Project>{2C8088B2-0CCC-4D33-9691-07EDAF963EEE}</Project>
       <Name>USP.ESI.SUEP.Lib</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="brain.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

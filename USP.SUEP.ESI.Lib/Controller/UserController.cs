@@ -7,9 +7,9 @@ namespace USP.ESI.SUEP.Lib.Controller
 {
     public class UserController
     {
-        public List<User> Get()
+        public List<User> Get(long _par_intLoggedUser)
         {
-            var _objLstDatabaseUsers = new UserDAO(new EntidadesContext()).Get();
+            var _objLstDatabaseUsers = new UserDAO(new EntidadesContext()).Get(_par_intLoggedUser);
             var _objLstUsers = new List<User>();
 
             foreach (var _objDatabaseUser in _objLstDatabaseUsers)

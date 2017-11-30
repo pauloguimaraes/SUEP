@@ -31,7 +31,8 @@ namespace USP.ESI.SUEP.Lib.Controller
                 {
                     Name = _parObjDatabaseUser.Name,
                     CPF = _parObjDatabaseUser.CPF,
-                    Id = _parObjDatabaseUser.Id
+                    Id = _parObjDatabaseUser.Id,
+                    HourPrice = _parObjDatabaseUser.HourPrice
                 };
             }
             catch (Exception ex)

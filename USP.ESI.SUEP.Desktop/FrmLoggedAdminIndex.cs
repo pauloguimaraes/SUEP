@@ -24,6 +24,8 @@ namespace USP.ESI.SUEP.Desktop
         {
             LoadUserTypes();
 
+            LblOla.Text += " " + LoggedUser.USER.Name.Split(' ')[0] + "!";
+
             LoadRegisteredUsers();
         }
 
@@ -40,7 +42,7 @@ namespace USP.ESI.SUEP.Desktop
                 DtgUsers.AutoGenerateColumns = true;
                 DtgUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
 
-                var _objLstUsers = new UserController().Get();
+                var _objLstUsers = new UserController().Get(LoggedUser.USER.Id);
                 var _objLstBindingUsers = new List<BindingUser>();
 
                 foreach(var _objUser in _objLstUsers)
@@ -151,8 +153,10 @@ namespace USP.ESI.SUEP.Desktop
                         Pass = Convert.ToBase64String(Encoding.UTF8.GetBytes(TxtPass.Text)),
                         Active = ChbActive.Checked,
                         IdAccessProfile = CbbUserType.SelectedIndex + 1,
-                        HourPrice = Convert.ToDecimal(TxtHourPrice.Text)
                     };
+
+                    if(CbbUserType.SelectedIndex == 1)
+                        _objUser.HourPrice = Convert.ToDecimal(TxtHourPrice.Text);
 
                     if (!TxtIdUsuario.Text.Equals(string.Empty))
                         _objUser.Id = Convert.ToInt32(TxtIdUsuario.Text);
@@ -161,10 +165,13 @@ namespace USP.ESI.SUEP.Desktop
 
                     if (_bolCouldChange)
                         MessageBox.Show("Operação concluída com sucesso!");
+                    else
+                        MessageBox.Show("Paciente com CPF e/ou login já cadastrados");
 
                     CleanScreen();
                     LoadRegisteredUsers();
                 }
+                
             }
             catch(Exception ex)
             {
@@ -176,17 +183,17 @@ namespace USP.ESI.SUEP.Desktop
         {
             var _strMensagem = string.Empty;
 
-            if (TxtLogin.Text.Length < 3 || TxtLogin.Text.Length > 12)
-                _strMensagem += "Login com tamanho inválido\n";
+            if (TxtLogin.Text.Trim().Length < 3 || TxtLogin.Text.Trim().Length > 12)
+                _strMensagem += "Login com tamanho inválido (3 - 12 caracteres)\n";
 
-            if (TxtPass.Text.Length < 6 || TxtPass.Text.Length > 255)
-                _strMensagem += "Senha com tamanho inválido\n";
+            if (TxtPass.Text.Trim().Length < 6 || TxtPass.Text.Trim().Length > 255)
+                _strMensagem += "Senha com tamanho inválido (6 - 255 caracteres)\n";
 
-            if (TxtName.Text.Length < 4 || TxtName.Text.Length > 255)
-                _strMensagem += "Nome com tamanho inválido\n";
+            if (TxtName.Text.Trim().Length < 4 || TxtName.Text.Trim().Length > 255)
+                _strMensagem += "Nome com tamanho inválido (4 - 255 caracteres)\n";
 
             if (TxtCPF.Text.Length != 11)
-                _strMensagem += "CPF inválido\n";
+                _strMensagem += "CPF inválido (11 caracteres)\n";
 
             if (CbbUserType.SelectedIndex < 0)
                 _strMensagem += "Tipo de usuário inválido\n";

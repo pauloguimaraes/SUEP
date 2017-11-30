@@ -14,7 +14,7 @@ namespace USP.ESI.SUEP.Dao
             entidadesContext = _par_objEntidadesContext;
         }
 
-        public List<TbSuep_User> Get()
+        public List<TbSuep_User> Get(long _par_intIdLoggedUser)
         {
             try
             {
@@ -23,7 +23,7 @@ namespace USP.ESI.SUEP.Dao
                 if (_objUsers == null || _objUsers.Count() == 0)
                     throw new Exception("Não existem usuários cadastrados!");
 
-                return _objUsers.Take(50).OrderBy(user => user.Login).ToList();
+                return _objUsers.Take(50).Where(user => user.Id != _par_intIdLoggedUser).OrderBy(user => user.Login).ToList();
             }
             catch(Exception ex)
             {
@@ -122,8 +122,16 @@ namespace USP.ESI.SUEP.Dao
                 if (_parObjUserDatabase.Id > 0)
                     _parObjUserDatabase.Id = 0;
 
-                entidadesContext.Users.Add(_parObjUserDatabase);
-                entidadesContext.SaveChanges();
+                var _intCount = entidadesContext.Users.Where(user => user.CPF.Equals(_parObjUserDatabase.CPF) || user.Login.Equals(_parObjUserDatabase.Login)).ToList().Count();
+
+
+                if(_intCount > 0)
+                    return false;
+                else
+                {
+                    entidadesContext.Users.Add(_parObjUserDatabase);
+                    entidadesContext.SaveChanges();
+                }
                 return true;
             }
             catch(Exception ex)

@@ -113,7 +113,7 @@ namespace USP.ESI.SUEP.Tests.DAO
         [TestMethod]
         public void ShouldReturn50FirstUsers()
         {
-            Assert.IsTrue(new UserDAO(entitiesMock.Object).Get().Count < 50);
+            Assert.IsTrue(new UserDAO(entitiesMock.Object).Get(1000).Count < 50);
         }
 
 
@@ -126,7 +126,7 @@ namespace USP.ESI.SUEP.Tests.DAO
             entitiesMock.Setup(m => m.Users).Returns(MockUtil<TbSuep_User>.GetMockSet(new List<TbSuep_User>().AsQueryable()).Object);
             Assert.ThrowsException<Exception>(() =>
             {
-                new UserDAO(entitiesMock.Object).Get();
+                new UserDAO(entitiesMock.Object).Get(1000);
             });
         }
         
@@ -137,7 +137,7 @@ namespace USP.ESI.SUEP.Tests.DAO
         [TestMethod]
         public void UsersListShouldBeSortedByLogin()
         {
-            var _objDao = new UserDAO(entitiesMock.Object).Get();
+            var _objDao = new UserDAO(entitiesMock.Object).Get(1000);
 
             Assert.IsTrue(_objDao[0].Login.Equals("aaa"));
             Assert.IsTrue(_objDao[1].Login.Equals("abc"));
